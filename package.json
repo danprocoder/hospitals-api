@@ -4,6 +4,7 @@
   "description": "API to get list of hospitals in Nigeria",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint ./src --fix",
     "start:dev": "babel-node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -33,6 +34,10 @@
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.0.5",
     "nodemon": "^1.19.2"
+  },
+  "husky": {
+    "pre-commit": "npm run lint"
   }
 }
