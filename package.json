@@ -4,7 +4,7 @@
   "description": "API to get list of hospitals in Nigeria",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./src",
+    "lint": "eslint ./src --fix",
     "start:dev": "babel-node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,7 +25,10 @@
     "@babel/core": "^7.6.0",
     "@babel/node": "^7.6.1",
     "@babel/preset-env": "^7.6.0",
-    "express": "^4.17.1"
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.18.4"
   },
   "devDependencies": {
     "eslint": "^6.3.0",
