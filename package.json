@@ -1,0 +1,22 @@
+{
+  "name": "hospitals",
+  "version": "1.0.0",
+  "description": "API to get list of hospitals in Nigeria",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danprocoder/hospitals-api.git"
+  },
+  "keywords": [
+    "hospitals"
+  ],
+  "author": "Daniel Austin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danprocoder/hospitals-api/issues"
+  },
+  "homepage": "https://github.com/danprocoder/hospitals-api#readme"
+}
