@@ -38,6 +38,8 @@
     "nodemon": "^1.19.2"
   },
   "husky": {
-    "pre-commit": "npm run lint"
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
