@@ -4,9 +4,11 @@
   "description": "API to get list of hospitals in Nigeria",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./src --fix",
-    "start:dev": "babel-node src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:check": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "start:dev": "nodemon --exec babel-node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:migrate:fresh": "sequelize db:migrate"
   },
   "repository": {
     "type": "git",
@@ -25,8 +27,13 @@
     "@babel/core": "^7.6.0",
     "@babel/node": "^7.6.1",
     "@babel/preset-env": "^7.6.0",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
+    "express-validator": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.7.0",
     "sequelize": "^5.18.4"
   },
@@ -42,7 +49,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm run lint:check"
     }
   }
 }
