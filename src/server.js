@@ -8,12 +8,25 @@ app.use(
   bodyParser.json()
 )
 
-app.use('/api', routes)
+app.use('/api/v1', routes)
 app.use('/', (req, res) => {
   res.send({ message: 'Welcome to the beginning of nothingness' })
 })
 
 const port = process.env.PORT || 4032
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server started on port ${port}`)
 })
+
+const exitEvents = [
+  'exit',
+  'uncaughtException',
+  'unhandledRejection',
+  'SIGTERM'
+]
+for (const event of exitEvents) {
+  process.on(event, (err) => {
+    console.error(err)
+    server.close()
+  })
+}

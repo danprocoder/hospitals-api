@@ -1,7 +1,7 @@
 import { validationResult } from 'express-validator'
 import response from '../../utils/response'
 
-export default (req, res) => {
+export default (req, res, next) => {
   const errors = validationResult(req).formatWith(({ msg }) => msg)
   if (!errors.isEmpty()) {
     response(res).badRequest({
@@ -10,5 +10,5 @@ export default (req, res) => {
         errors: errors.mapped()
       }
     })
-  }
+  } else next()
 }
