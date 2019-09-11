@@ -17,7 +17,9 @@ export default {
 
     response(res).created({
       message: 'User has been added',
-      data: user
+      data: {
+        user
+      }
     })
   }
 }
