@@ -8,16 +8,19 @@ export default [
     .withMessage('Firstname is required')
     .isAlpha()
     .withMessage('Firstname can only contain alphabetic characters'),
+
   check('lastname')
     .exists()
     .withMessage('Lastname is required')
     .isAlpha()
     .withMessage('Lastname can only contain alphabetic characters'),
+
   check('email')
     .exists()
     .withMessage('Email is required')
     .isEmail()
     .withMessage('Email address provided is not valid'),
+
   body('email')
     .custom(email => {
       return model.User.findOne({
@@ -30,10 +33,12 @@ export default [
         return true
       })
     }),
+
   check('password')
     .exists()
     .withMessage('Password is required')
     .isLength({ min: 8 })
     .withMessage('Password should be at least 8 characters'),
-  checkValidationFails
+
+  checkValidationFails('Unable to create user account')
 ]

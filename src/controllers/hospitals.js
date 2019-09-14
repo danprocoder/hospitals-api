@@ -11,5 +11,19 @@ export default {
       message: `${hospitals.length} of ${total} total record${total ? 's' : ''}`,
       data: hospitals
     })
+  },
+
+  async addNew (req, res) {
+    const { name, address, state, lng, lat, phone } = req.body
+
+    const hospital = await model.Hospitals.create({
+      name, address, state, lng, lat, phone
+    })
+    res.created({
+      message: 'New hospital created successfully',
+      data: {
+        hospital
+      }
+    })
   }
 }
