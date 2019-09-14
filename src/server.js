@@ -5,16 +5,53 @@ import routes from './routes'
 require('dotenv').config()
 
 const app = express()
+
+// Define response helper functions
+const responseFunctions = {
+  unauthorized: {
+    status: 401
+  },
+  success: {
+    status: 200
+  },
+  created: {
+    status: 201
+  },
+  internalServerError: {
+    status: 500,
+    data: {
+      message: 'Internal server error'
+    }
+  }
+}
+for (const funcName in responseFunctions) {
+  const res = responseFunctions[funcName]
+
+  app.response[funcName] = function (data = res.data) {
+    data.executionTime = `${((new Date()) - this.req.startMillis) / 1000}s`
+    data.timestamp = new Date()
+
+    this.status(res.status).json(data)
+  }
+}
+
+app.use((req, res, next) => {
+  req.startMillis = (new Date()).getTime()
+  next()
+})
+
 app.use(
   bodyParser.urlencoded({ extended: false }),
   bodyParser.json()
 )
 
+// Define routes
 app.use('/api/v1', routes)
 app.use('/', (req, res) => {
   res.send({ message: 'Welcome to the beginning of nothingness' })
 })
 
+// Start server
 const port = process.env.PORT || 4032
 const server = app.listen(port, () => {
   console.log(`Server started on port ${port}`)
