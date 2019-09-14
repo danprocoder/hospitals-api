@@ -24,5 +24,30 @@ export default {
         user
       }
     })
+  },
+
+  async authUser (req, res) {
+    const { email, password } = req.body
+
+    try {
+      const user = await model.User.findOne({ where: { email } })
+      if (user) {
+        if (bcrypt.compareSync(password, user.password)) {
+          const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' })
+
+          res.success({
+            message: 'Login successful',
+            data: { token }
+          })
+        } else {
+          res.unauthorized({ message: 'Incorrect username/password combination' })
+        }
+      } else {
+        res.unauthorized({ message: 'Incorrect username/password combination' })
+      }
+    } catch (error) {
+      console.error(error)
+      res.internalServerError()
+    }
   }
 }

@@ -8,6 +8,8 @@ const router = Router()
 
 router.post('/', validateSignUpField, user.createUser)
 
+router.post('/auth', user.authUser)
+
 router.route('/key')
   .all(checkUserToken)
   .get(apiKey.getAllApiKeys)
