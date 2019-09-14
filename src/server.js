@@ -1,6 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import routes from './routes'
+import model from './database/models'
 
 require('dotenv').config()
 
@@ -47,8 +48,15 @@ app.use(
 
 // Define routes
 app.use('/api/v1', routes)
-app.use('/', (req, res) => {
-  res.send({ message: 'Welcome to the beginning of nothingness' })
+app.use('/', async (req, res) => {
+  const totalHospitals = await model.Hospitals.count()
+
+  res.send({
+    message: 'Welcome',
+    data: {
+      totalHospitals
+    }
+  })
 })
 
 // Start server
