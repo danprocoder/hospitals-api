@@ -1,5 +1,4 @@
 import model from '../database/models'
-import response from '../utils/response'
 
 export default {
   async getAll (req, res) {
@@ -8,7 +7,7 @@ export default {
     })
     const total = await model.Hospitals.count()
 
-    response(res).success({
+    res.success({
       message: `${hospitals.length} of ${total} total record${total ? 's' : ''}`,
       data: hospitals
     })
