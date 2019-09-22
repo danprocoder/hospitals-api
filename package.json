@@ -2,7 +2,7 @@
   "name": "hospitals",
   "version": "1.0.0",
   "description": "API to get list of hospitals in Nigeria",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "build": "babel ./src -d ./build",
     "lint:check": "eslint ./src",
