@@ -4,6 +4,7 @@
   "description": "API to get list of hospitals in Nigeria",
   "main": "index.js",
   "scripts": {
+    "build": "babel ./src -d ./build",
     "lint:check": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "start:dev": "nodemon --exec babel-node src/server.js",
