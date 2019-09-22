@@ -47,6 +47,10 @@ app.use(
 )
 
 // Define routes
+app.get('/test', (req, res) => {
+  res.send('Working')
+})
+
 app.use('/api/v1', routes)
 app.use('/', async (req, res) => {
   const totalHospitals = await model.Hospitals.count()
