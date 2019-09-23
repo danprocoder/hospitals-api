@@ -7,6 +7,24 @@ require('dotenv').config()
 
 const app = express()
 
+// Handle CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PATCH')
+  res.header('Access-Control-Allow-Headers', '*')
+
+  next()
+})
+
+// Handle preflight request
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    res.send(200)
+  } else {
+    next()
+  }
+})
+
 // Define response helper functions
 const responseFunctions = {
   unauthorized: {
